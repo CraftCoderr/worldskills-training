@@ -1,0 +1,122 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление проектами</title>
+  <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand navbar-light">
+      <a class="navbar-brand" href="/">
+        <img src="assets/logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Главная
+      </a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="manager.html" class="nav-link btn">Управление</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            id="btn-notifications">Уведомления
+            <span class="badge badge-primary">3</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="btn-notifications">
+            <a class="dropdown-item" href="#">Уведомление 1</a>
+            <a class="dropdown-item" href="#">Уведомление 2</a>
+            <a class="dropdown-item" href="#">Уведомление 3</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="register.html" class="nav-link btn">Регистрация</a>
+        </li>
+        <li class="nav-item">
+          <a href="login.html" class="nav-link btn">Вход</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn">Выйти</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <main>
+    <div class="content container mt-5">
+      <div>
+        <div class="card">
+          <h5 class="card-header">Задачи</h5>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5 class="mb-3">Сайт для интернет магазина</h5>
+                <div class="row row-cols-1 row-cols-md-3">
+                  <div class="col mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Подсистема регистрации</h5>
+                        <span>Дизайн</span>
+                        <h6>Иванов Иван</h6>
+                      </div>
+                      <div class="card-footer">
+                        <small>10.10.20-11.11.20</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Подсистема 2</h5>
+                        <span>Фронтенд</span>
+                        <h6>Сергей сергеев</h6>
+                      </div>
+                      <div class="card-footer">
+                        <small>10.10.20-11.11.20</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Подсистема 3</h5>
+                        <span>Бэкенд</span>
+                        <h6>Петр Петров</h6>
+                      </div>
+                      <div class="card-footer">
+                        <small>10.10.20-11.11.20</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <h5 class="mb-3">Сайт ресторана</h5>
+                <div class="row row-cols-1 row-cols-md-3">
+                  <div class="col mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Страница меню</h5>
+                        <span>Дизайн</span>
+                        <h6>Иванов Иван</h6>
+                      </div>
+                      <div class="card-footer">
+                        <small>10.10.20-11.11.20</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="dist/jquery-3.5.1.js"></script>
+  <script src="dist/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

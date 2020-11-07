@@ -1,0 +1,103 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand navbar-light">
+            <a class="navbar-brand" href="/">
+                <img src="assets/logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt=""
+                    loading="lazy">
+                Главная
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="manager.html" class="nav-link btn">Управление</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" id="btn-notifications">Уведомления
+                        <span class="badge badge-primary">3</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="btn-notifications">
+                        <a class="dropdown-item" href="#">Уведомление 1</a>
+                        <a class="dropdown-item" href="#">Уведомление 2</a>
+                        <a class="dropdown-item" href="#">Уведомление 3</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="register.html" class="nav-link btn">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link btn">Вход</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn">Выйти</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <main>
+        <div class="content container mt-5">
+            <div class="col-8 mx-auto">
+                <div class="card">
+                    <h5 class="card-header">Регистрация</h5>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="form_name">Имя</label>
+                                <input type="text" class="form-control" id="form_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="form_surname">Фамилия</label>
+                                <input type="text" class="form-control" id="form_surname">
+                            </div>
+                            <div class="form-group">
+                                <label for="form_project">Проект</label>
+                                <select class="custom-select" id="form_project">
+                                    <option disabled>Выберите проект</option>
+                                    <option>Сайт для интернет магазина</option>
+                                    <option>Сайт ресторана</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="form_spec">Специализация или направление разработки</label>
+                                <select class="custom-select" id="form_spec">
+                                    <option disabled>Выберите специализацию</option>
+                                    <option>Фронтенд</option>
+                                    <option>Бэкенд</option>
+                                    <option>Дизайн</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="form_email">Email</label>
+                                <input type="email" class="form-control" id="form_email">
+                            </div>
+                            <div class="form-group">
+                                <label for="form_password">Пароль</label>
+                                <input type="password" class="form-control" id="form_password">
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="form_photo" required>
+                                <label class="custom-file-label" for="form_photo">Выберите файл...</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Зарегистрироваться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="dist/jquery-3.5.1.js"></script>
+    <script src="dist/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>
