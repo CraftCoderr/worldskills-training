@@ -18,8 +18,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'photo'
     ];
 
     /**
@@ -40,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function spec() {
+        return $this->belongsTo('App\Models\Spec');
+    }
+
+    public function project() {
+        return $this->belongsTo('App\Models\Project');
+    }
 }
