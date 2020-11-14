@@ -31,7 +31,7 @@
                                                 <h6>
                                                     {{ $task->name }}
                                                     <button class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                                            data-target="#modal-create-thread">Создать тему</button>
+                                                            data-target="#modal-create-thread" data-task="{{$task->id}}">Создать тему</button>
                                                 </h6>
                                                 <ul class="list-group list-group-flush">
                                                     @foreach($task->threads()->get() as $thread)
@@ -65,26 +65,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('createThread') }}" method="POST" name="create_thread">
                         @csrf
+                        <input type="text" style="display: none" id="form_create_thread_task" name="task" required>
                         <div class="form-group">
                             <label for="form_create_thread_title">Название</label>
-                            <input type="text" class="form-control" id="form_create_thread_title">
+                            <input type="text" class="form-control" id="form_create_thread_title" name="title">
                         </div>
-                        <textarea class="form-control mb-3" placeholder="Текст темы"></textarea>
+                        <textarea class="form-control mb-3" placeholder="Текст темы" name="text"></textarea>
                         <div class="form-group">
                             <label for="form_create_thread_type">Тип темы</label>
-                            <select class="custom-select" id="form_create_thread_type">
-                                <option selected>Открытая</option>
-                                <option>Информационная</option>
-                                <option>Закрытая</option>
+                            <select class="custom-select" id="form_create_thread_type" name="type">
+                                <option value="open" selected>Открытая</option>
+                                <option value="info">Информационная</option>
+                                <option value="private">Закрытая</option>
                             </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-                    <button type="button" class="btn btn-primary">Создать тему</button>
+                    <button type="button" class="btn btn-primary" id="create_thread_submit">Создать тему</button>
                 </div>
             </div>
         </div>
@@ -180,12 +181,23 @@
             modal.find('#form_create_task_section').attr('value', section)
         })
 
+        $('#modal-create-thread').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var section = button.data('task') // Extract info from data-* attributes
+            var modal = $(this)
+            modal.find('#form_create_thread_task').attr('value', section)
+        })
+
         $('#create_section_submit').on('click', function (event) {
             document.forms['create_section'].submit()
         })
 
         $('#create_task_submit').on('click', function (event) {
             document.forms['create_task'].submit()
+        })
+
+        $('#create_thread_submit').on('click', function (event) {
+            document.forms['create_thread'].submit()
         })
     </script>
 @endpush

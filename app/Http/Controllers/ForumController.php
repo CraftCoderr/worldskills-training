@@ -6,8 +6,10 @@ use App\Models\Project;
 use App\Models\Section;
 use App\Models\Spec;
 use App\Models\Task;
+use App\Models\Thread;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ForumController extends Controller
@@ -58,6 +60,33 @@ class ForumController extends Controller
         $task->spec()->associate(Spec::find($request->spec));
         $task->section()->associate($section);
         $task->save();
+
+//        $section->tasks()->save($section);
+
+        return redirect(route('index'));
+    }
+
+    public function createThread(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:1|max:255',
+            'text' => 'required',
+            'type' => 'required',
+            'task' => 'required|exists:tasks,id'
+        ]);
+
+        if ($validator->fails()) {
+            return new JsonResponse(['error' => $validator->errors()->all()]);
+        }
+
+        $task = Task::find($request->task);
+
+        $thread = new Thread;
+        $thread->title = $request->title;
+        $thread->text = $request->text;
+        $thread->type = $request->type;
+        $thread->task()->associate($task);
+        $thread->user()->associate(Auth::user());
+        $thread->save();
 
 //        $section->tasks()->save($section);
 

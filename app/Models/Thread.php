@@ -11,14 +11,16 @@ class Thread extends Model
 
     protected $fillable = [
         'title',
-        'text'
+        'text',
+        'type'
     ];
 
-    private $title;
-    private $text;
-
-    public function author() {
+    public function user() {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function task() {
+        return $this->belongsTo('App\Models\Task');
     }
 
 }

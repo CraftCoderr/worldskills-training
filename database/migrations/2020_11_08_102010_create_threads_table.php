@@ -17,6 +17,8 @@ class CreateThreadsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('text');
+            $table->string('type');
+            $table->foreignIdFor('App\Models\User');
             $table->foreignIdFor('App\Models\Task');
             $table->timestamps();
         });

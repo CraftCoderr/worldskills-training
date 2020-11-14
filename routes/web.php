@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('index');
-Route::any('register', [\App\Http\Controllers\LoginController::class, 'register'])->name('register');
-Route::any('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
-Route::any('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
-Route::any('createSection', [\App\Http\Controllers\ForumController::class, 'createSection'])->name('createSection');
-Route::any('createTask', [\App\Http\Controllers\ForumController::class, 'createTask'])->name('createTask');
+Route::get('/', [MainController::class, 'index'])->name('index');
+Route::any('register', [LoginController::class, 'register'])->name('register');
+Route::any('login', [LoginController::class, 'login'])->name('login');
+Route::any('logout', [LoginController::class, 'logout'])->name('logout');
+Route::any('createSection', [ForumController::class, 'createSection'])->name('createSection')->middleware('auth');
+Route::any('createTask', [ForumController::class, 'createTask'])->name('createTask')->middleware('auth');
+Route::any('createThread', [ForumController::class, 'createThread'])->name('createThread')->middleware('auth');
