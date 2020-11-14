@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Project;
 use App\Models\Section;
 use App\Models\Spec;
@@ -32,8 +33,6 @@ class ForumController extends Controller
         $section->project()->associate($project);
         $section->save();
 
-//        $project->sections()->save($section);
-
         return redirect(route('index'));
     }
 
@@ -61,8 +60,6 @@ class ForumController extends Controller
         $task->section()->associate($section);
         $task->save();
 
-//        $section->tasks()->save($section);
-
         return redirect(route('index'));
     }
 
@@ -88,9 +85,79 @@ class ForumController extends Controller
         $thread->user()->associate(Auth::user());
         $thread->save();
 
-//        $section->tasks()->save($section);
-
         return redirect(route('index'));
+    }
+
+    public function showThread(Request $request, $id) {
+        $thread = Thread::find($id);
+        if (!$thread) {
+            return redirect(route('index'));
+        }
+
+        return view('thread', ['thread' => [
+            'id' => $thread->id,
+            'title' => $thread->title,
+            'text' => $thread->text,
+            'photo' => $thread->user->photo,
+            'name' => $thread->user->fullname(),
+            'date' => $thread->created_at
+        ]]);
+    }
+
+    public function createMessage(Request $request, $id) {
+        $thread = Thread::find($id);
+
+        $message = new Message;
+        $message->text = $request->text;
+        $message->date = new \DateTime();
+        $message->thread()->associate($thread);
+        $message->user()->associate(Auth::user());
+        $message->save();
+
+        return new JsonResponse([
+            'id' => $message->id,
+            'photo' => $message->user->photo,
+            'name' => $message->user->fullname(),
+            'text' => $message->text,
+            'date' => $message->created_at,
+            'changed' => $message->changed,
+            'owned' => true
+        ]);
+    }
+
+    public function updateMessage(Request $request, $id, $msg) {
+        $message = Message::find($msg);
+        $message->text = $request->text;
+        $message->changed = true;
+        $message->save();
+
+        return new JsonResponse([
+            'id' => $message->id,
+            'photo' => $message->user->photo,
+            'name' => $message->user->fullname(),
+            'text' => $message->text,
+            'date' => $message->created_at,
+            'changed' => $message->changed,
+            'owned' => true
+        ]);
+    }
+
+    public function loadMessages(Request $request, $id) {
+        $thread = Thread::find($id);
+        $messages = $thread->messages()->with('user')->get();
+        $mapped = [];
+        foreach ($messages as $message) {
+            $mapped []= [
+                'id' => $message->id,
+                'photo' => $message->user->photo,
+                'name' => $message->user->fullname(),
+                'text' => $message->text,
+                'date' => $message->created_at,
+                'changed' => $message->changed,
+                'owned' => ($message->user->id === Auth::user()->id)
+            ];
+        }
+        return new JsonResponse($mapped);
     }
 
 }

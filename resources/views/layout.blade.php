@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
 
-    <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/dist/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+
     @stack('styles')
+
+    @stack('templates')
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-expand navbar-light">
         <a class="navbar-brand" href="{{ route('index') }}">
-            <img src="assets/logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <img src="/assets/logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             Главная
         </a>
         <ul class="navbar-nav ml-auto">
@@ -53,8 +57,9 @@
 
 @stack('modals')
 
-<script src="dist/jquery-3.5.1.js"></script>
-<script src="dist/bootstrap/js/bootstrap.js"></script>
+<script src="/dist/jquery-3.5.1.js"></script>
+<script src="/dist/bootstrap/js/bootstrap.js"></script>
 @stack('scripts')
+@stack('components')
 </body>
 </html>

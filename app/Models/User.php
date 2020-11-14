@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function project() {
         return $this->belongsTo('App\Models\Project');
     }
+
+    public function fullname() {
+        return $this->name . ' ' . $this->surname;
+    }
 }

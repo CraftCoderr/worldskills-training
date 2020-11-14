@@ -35,7 +35,7 @@
                                                 </h6>
                                                 <ul class="list-group list-group-flush">
                                                     @foreach($task->threads()->get() as $thread)
-                                                    <li class="list-group-item"><a href="thread.html" class="btn btn-link">{{ $thread->title }}</a></li>
+                                                    <li class="list-group-item"><a href="{{route('showThread', ['id' => $thread->id])}}" class="btn btn-link">{{ $thread->title }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>

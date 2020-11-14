@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('index');
+
 Route::any('register', [LoginController::class, 'register'])->name('register');
 Route::any('login', [LoginController::class, 'login'])->name('login');
 Route::any('logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::any('createSection', [ForumController::class, 'createSection'])->name('createSection')->middleware('auth');
 Route::any('createTask', [ForumController::class, 'createTask'])->name('createTask')->middleware('auth');
 Route::any('createThread', [ForumController::class, 'createThread'])->name('createThread')->middleware('auth');
+
+Route::get('thread/{id}', [ForumController::class, 'showThread'])->name('showThread')->middleware('auth');
+Route::get('thread/{id}/messages/{page?}', [ForumController::class, 'loadMessages'])->name('loadMessages')->middleware('auth');
+
+Route::post('thread/{id}/message', [ForumController::class, 'createMessage'])->name('createMessage')->middleware('auth');
+Route::post('thread/{id}/message/{msg}', [ForumController::class, 'updateMessage'])->name('updateMessage')->middleware('auth');
